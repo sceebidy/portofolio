@@ -1,0 +1,502 @@
+    <!DOCTYPE html>
+    <html lang="id" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio Pribadi Premium | Mahasiswa</title>
+        
+        <!-- Google Fonts: Space Grotesk & Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+        
+        <!-- AOS Animation Library -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            navy: '#0A0F1E',
+                            offwhite: '#F0EDE6',
+                            accent: '#C0392B',
+                            charcoal: '#1A1F2E',
+                        },
+                        fontFamily: {
+                            display: ['Space Grotesk', 'sans-serif'],
+                            body: ['Inter', 'sans-serif'],
+                        }
+                    }
+                }
+            }
+        </script>
+        
+        <style>
+            body {
+                background-color: #0A0F1E;
+                color: #F0EDE6;
+                font-family: 'Inter', sans-serif;
+                overflow-x: hidden;
+            }
+            
+            /* Custom Scrollbar */
+            ::-webkit-scrollbar { width: 8px; }
+            ::-webkit-scrollbar-track { background: #0A0F1E; }
+            ::-webkit-scrollbar-thumb { background: #C0392B; border-radius: 4px; }
+
+            /* Signature Diagonal Clip Path */
+            .diagonal-clip {
+                clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+            }
+            @media (max-width: 768px) {
+                .diagonal-clip { clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); }
+            }
+
+            /* Custom Cursor (Desktop Only) */
+            .custom-cursor {
+                width: 20px; height: 20px; border: 2px solid #C0392B; border-radius: 50%;
+                position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
+                transition: width 0.3s, height 0.3s, background-color 0.3s;
+            }
+            .custom-cursor-dot {
+                width: 4px; height: 4px; background-color: #C0392B; border-radius: 50%;
+                position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
+            }
+            .hovering { width: 50px; height: 50px; background-color: rgba(192, 57, 43, 0.1); border-color: #C0392B; }
+        </style>
+    </head>
+    <body class="bg-navy text-offwhite font-body antialiased selection:bg-accent selection:text-white">
+
+        <!-- Custom Cursor -->
+        <div class="custom-cursor hidden md:block" id="customCursor"></div>
+        <div class="custom-cursor-dot hidden md:block" id="customCursorDot"></div>
+
+        <!-- Scroll Progress Indicator Bar -->
+        <div id="scrollProgress" class="fixed top-0 left-0 h-[3px] bg-accent z-[60] transition-all duration-100" style="width: 0%"></div>
+
+        <!-- NAVIGATION -->
+        <nav class="fixed top-0 left-0 w-full z-50 bg-navy/70 backdrop-blur-md border-b border-white/5 py-5 px-6 md:px-12 flex justify-between items-center transition-all duration-300" id="navbar">
+            <div class="font-display text-xl font-bold tracking-tight custom-hover">
+                M<span class="text-accent">.</span>ATHA
+            </div>
+            <div class="flex gap-6 md:gap-8 font-display text-[10px] md:text-xs tracking-[0.2em] font-medium">
+                <a href="#about" class="hover:text-accent transition duration-300 custom-hover">ABOUT</a>
+                <a href="#resume" class="hover:text-accent transition duration-300 custom-hover">RESUME</a>
+                <a href="#work" class="hover:text-accent transition duration-300 custom-hover">PORTFOLIO</a>
+                <a href="#contact" class="hover:text-accent transition duration-300 custom-hover">CONTACT</a>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION (Split Layout) -->
+        <section class="relative min-h-screen w-full flex flex-col md:flex-row pt-20 overflow-hidden select-none">
+            
+           <!-- Sisi Kiri: Foto Terpotong Diagonal dengan Red Accent Line -->
+<!-- Sisi Kiri: Foto Terpotong Diagonal dengan Red Accent Line -->
+<!-- Sisi Kiri: Foto Menggunakan Object Contain agar Utuh & Tajam -->
+<div class="relative w-full md:w-1/2 h-[50vh] md:h-screen overflow-hidden bg-charcoal flex items-center justify-center p-8" data-aos="fade-right" data-aos-duration="1200">
+    <div class="absolute inset-0 bg-accent diagonal-clip translate-x-3 translate-y-2 z-10 opacity-90 transition-transform duration-500 hover:translate-x-4 hover:translate-y-3"></div>
+    <div class="absolute inset-0 bg-charcoal diagonal-clip z-20 overflow-hidden group flex items-center justify-center">
+        
+        <!-- PERBAIKAN: Menggunakan object-contain dan membatasi tinggi gambar -->
+        <img src="saya.jpeg"
+     alt="Foto Profil" 
+     class="absolute inset-0 w-full h-full object-cover object-[center_15%] filter grayscale contrast-110 brightness-85 scale-100 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-1000 ease-out z-30">
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent opacity-60 pointer-events-none z-40"></div>
+    </div>
+</div>
+
+            <!-- Sisi Kanan: Teks Perkenalan Mahasiswa / Fresh Graduate -->
+            <div class="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-24 py-12 md:py-0 z-30" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-8 h-[1px] bg-accent"></span>
+                    <p class="font-display text-accent tracking-[0.3em] text-xs font-bold uppercase">MAHASISWA tEKNOLOGI INFORMASI</p>
+                </div>
+                
+                <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 tracking-tight">
+                    Halo, Saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-red-500 to-offwhite">MUHAMMAD ATHA ZAIDAN MAJID HSB.</span>
+                </h1>
+                
+                <p class="text-offwhite/70 max-w-md text-base leading-relaxed mb-10 font-light">
+                       Mahasiswa Teknologi Informasi USU yang passionate di bidang web development dan UI/UX design. Berorientasi pada solusi digital yang fungsional, estetis, dan berdampak nyata.
+ Siap berkontribusi secara profesional.
+                </p>
+                
+                <div class="flex flex-wrap items-center gap-6">
+                    <!-- Link langsung download CV Anda -->
+                    <a href="CV-Anda.pdf" download class="custom-hover relative inline-flex items-center justify-center bg-accent text-offwhite font-display font-bold text-xs tracking-widest px-6 py-4 border border-accent hover:bg-transparent hover:text-accent transition-all duration-300">
+                        DOWNLOAD CV / RESUME 💾
+                    </a>
+                    <a href="#about" class="custom-hover font-display text-xs tracking-widest font-bold border-b border-white/20 hover:border-accent pb-1 transition duration-300">VISI & MISI ↓</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: VISI, MISI & TENTANG SAYA -->
+        <section id="about" class="py-32 px-6 md:px-12 bg-charcoal/40 border-t border-white/5">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Kolor Kiri: Judul besar ala Framer -->
+                    <div class="lg:col-span-4" data-aos="fade-up">
+                        <p class="font-display text-accent tracking-[0.2em] text-xs font-bold uppercase mb-3">// PURPOSE</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold">Visi, Misi & Komitmen.</h2>
+                    </div>
+                    
+                    <!-- Kolom Kanan: Detail Visi Misi -->
+                    <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 font-light text-offwhite/80">
+                        <div class="bg-charcoal p-8 border border-white/5" data-aos="fade-up" data-aos-delay="100">
+                            <div class="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center mb-4">
+                                <span class="text-accent text-xs font-bold">👁️‍🗨️</span>
+                            </div>
+                            <h3 class="font-display text-lg font-bold text-offwhite mb-3">Visi</h3>
+                            <p class="text-sm leading-relaxed text-offwhite/70">
+Menjadi pengembang perangkat lunak yang menguasai keamanan siber dan sistem informasi, guna menciptakan solusi digital yang fungsional, aman, dan memberikan dampak nyata di dunia nyata.                               </p>
+                        </div>
+
+                        <div class="bg-charcoal p-8 border border-white/5" data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center mb-4">
+                                <span class="text-accent text-xs font-bold">🎯</span>
+                            </div>
+                            <h3 class="font-display text-lg font-bold text-offwhite mb-3">Misi Kerja</h3>
+                            <ul class="text-sm space-y-2 text-offwhite/70 list-disc list-inside">
+                                <li>Menerapkan keilmuan akademis secara praktis di industri nyata.</li>
+                                <!-- JADI: -->
+<li>Membangun sistem web yang scalable, aman, dan berorientasi pada kualitas kode.</li>
+
+                                <li>Terus beradaptasi, belajar cepat, dan berkolaborasi dalam tim multidisiplin.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: RESUME (EDUKASI, PENGALAMAN & SKILLS) -->
+        <section id="resume" class="py-32 px-6 md:px-12 bg-navy border-t border-white/5">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+                    
+                    <!-- Blok 1: Edukasi -->
+                    <div data-aos="fade-up">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="text-accent text-lg"></span>
+                            <h3 class="font-display text-xl font-bold tracking-tight">Pendidikan</h3>
+                        </div>
+                        <div class="space-y-8 border-l border-white/10 pl-6">
+                            <div class="relative">
+                                <span class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-accent"></span>
+                                <span class="text-xs font-display text-accent font-bold">2024 - Sekarang</span>
+                                <h4 class="font-display font-bold text-base mt-1">Universitas Sumatera Utara</h4>
+                                <p class="text-xs text-offwhite/50">S1 - Teknologi Informasi · IPK: [3.63/ 4.00]</p>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-white/20"></span>
+                                <span class="text-xs font-display text-offwhite/40">2021 - 2024</span>
+                                <h4 class="font-display font-bold text-base mt-1">SMAN 1 Matauli Pandan</h4>
+                                <p class="text-xs text-offwhite/50">IPA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blok 2: Organisasi / Pengalaman Kampus -->
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="text-accent text-lg"></span>
+                            <h3 class="font-display text-xl font-bold tracking-tight">Pengalaman Kerja</h3>
+                        </div>
+                        <div class="space-y-8 border-l border-white/10 pl-6">
+                            <div class="relative">
+                                <span class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-accent"></span>
+                                <span class="text-xs font-display text-accent font-bold">Mitra Proyek</span>
+                                <h4 class="font-display font-bold text-base mt-1">PT.Sipirok Indah</h4>
+                                <p class="text-xs text-offwhite/60 mb-2">Web Developer</p>
+                                <p class="text-xs text-offwhite/40 font-light">Membuat Website Management Karyawan dan Absensi Pada PT</p>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-white/20"></span>
+                                <span class="text-xs font-display text-offwhite/40">Asisten Proyek Dosen    </span>
+                                <h4 class="font-display font-bold text-base mt-1">Website Pembuatan Laporan Berbasis AI</h4>
+                                <p class="text-xs text-offwhite/60 mb-2">Dr. Pauzi Ibrahim Nainggolan, S.Komp., M.Sc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blok 3: Hard & Soft Skills -->
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="text-accent text-lg"></span>
+                            <h3 class="font-display text-xl font-bold tracking-tight">Keahlian Utama</h3>
+                        </div>
+                        <div class="space-y-6">
+    <!-- Technical Skills -->
+    <div>
+        <h5 class="text-xs font-display tracking-widest text-accent font-bold uppercase mb-3">Technical Skills</h5>
+        <div class="flex flex-wrap gap-2">
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Laravel / PHP</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">MySQL</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">HTML5 & CSS3</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Tailwind CSS</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">JavaScript</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">C / C++</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Java</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">REST API Integration</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Figma UI/UX</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Git & GitHub</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Linux / Networking</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Cybersecurity Fundamentals</span>
+        </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="pt-4">
+        <h5 class="text-xs font-display tracking-widest text-accent font-bold uppercase mb-3">Soft Skills</h5>
+        <div class="flex flex-wrap gap-2">
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Problem Solving</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Fast Learner</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Team Collaboration</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Time Management</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Leadership</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Critical Thinking</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Adaptability</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Public Speaking</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Self-Motivated</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Detail-Oriented</span>
+            <span class="bg-charcoal text-offwhite/80 text-xs px-3 py-1.5 border border-white/5">Multitasking</span>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: PORTFOLIO KARYA MAHASISWA -->
+        <section id="work" class="py-32 px-6 md:px-12 bg-charcoal/20 border-t border-white/5">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20" data-aos="fade-up">
+                    <div>
+                        <p class="font-display text-accent tracking-[0.2em] text-xs font-bold uppercase mb-3">// PROJECT PORTOFOLIO</p>
+                        <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight">Karya Terbaik Saya</h2>
+                    </div>
+                   <p class="text-offwhite/50 max-w-s mt-4 md:mt-0 font-light text-sm leading-relaxed">
+     proyek nyata, studi kasus teknis, dan pengembangan sistem berbasis Laravel & AI.
+</p>
+                </div>
+
+                <!-- Grid Proyek -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                   <!-- Project 1: PT Sipirok Indah - Dengan Carousel -->
+<div class="group bg-charcoal p-5 border border-white/5 hover:border-white/10 transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
+    
+    <!-- Carousel Container -->
+    <div class="w-full h-72 bg-navy overflow-hidden mb-6 relative">
+        
+        <!-- Slides -->
+        <div class="carousel-track flex h-full transition-transform duration-500 ease-out" id="carousel1">
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ss1.png" alt="Dashboard" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ss2.png" alt="Absensi" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ss3.png" alt="Rekap" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ss4.png" alt="Laporan" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <!-- Overlay Hover -->
+    
+
+        <!-- Tombol Navigasi -->
+        <button onclick="moveCarousel('carousel1', -1)" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-navy/80 border border-white/10 hover:border-accent hover:text-accent text-offwhite/70 flex items-center justify-center transition duration-300 text-sm">‹</button>
+        <button onclick="moveCarousel('carousel1', 1)" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-navy/80 border border-white/10 hover:border-accent hover:text-accent text-offwhite/70 flex items-center justify-center transition duration-300 text-sm">›</button>
+
+        <!-- Dot Indicator -->
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20" id="dots1">
+            <span class="dot w-1.5 h-1.5 rounded-full bg-accent cursor-pointer" onclick="goToSlide('carousel1', 'dots1', 0)"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 cursor-pointer" onclick="goToSlide('carousel1', 'dots1', 1)"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 cursor-pointer" onclick="goToSlide('carousel1', 'dots1', 2)"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 cursor-pointer" onclick="goToSlide('carousel1', 'dots1', 3)"></span>
+        </div>
+    </div>
+
+    <!-- Info Proyek -->
+    <div class="px-2">
+        <span class="text-[10px] text-accent font-display tracking-widest font-bold">CLIENT PROJECT · PT SIPIROK INDAH</span>
+        <h3 class="font-display text-xl font-bold my-1 group-hover:text-accent transition duration-300">Integrated Employee Management System</h3>
+<p class="text-offwhite/60 text-xs font-light leading-relaxed">
+    Sistem manajemen karyawan terintegrasi untuk 150+ pegawai PT Sipirok Indah, dibangun di atas Laravel 12 dengan arsitektur multi-role authentication mencakup enam level akses pengguna. Fitur utama meliputi sistem absensi real-time dengan logika keterlambatan berbasis shift, rekap kehadiran otomatis, manajemen izin & sakit, multi-photo upload untuk laporan patroli keamanan, serta modul pelaporan eksekutif. Database dirancang dengan ERD terstruktur menggunakan MySQL, seluruh file storage dikelola via Laravel Filesystem dengan path management yang konsisten antar environment.
+</p>        <p class="text-offwhite/30 text-[10px] font-display tracking-wider mt-3 italic">
+    * Source code tersedia untuk ditunjukkan saat interview
+</p>
+    </div>
+</div>
+
+                   <!-- Project 2: SEPIA - Dengan Carousel -->
+<div class="group bg-charcoal p-5 border border-white/5 hover:border-white/10 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
+    
+    <!-- Carousel Container -->
+    <div class="w-full h-72 bg-navy overflow-hidden mb-6 relative">
+        
+        <!-- Slides -->
+        <div class="carousel-track flex h-full transition-transform duration-500 ease-out" id="carousel2">
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ssp1.png" alt="SEPIA Dashboard" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ssp2.png" alt="SEPIA Analitik" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ssp3.png" alt="SEPIA AI Pipeline" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide min-w-full h-full flex-shrink-0">
+                <img src="ssp4.png" alt="SEPIA Laporan" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        
+
+        <!-- Tombol Navigasi -->
+        <button onclick="moveCarousel('carousel2', -1)" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-navy/80 border border-white/10 hover:border-accent hover:text-accent text-offwhite/70 flex items-center justify-center transition duration-300 text-sm">‹</button>
+        <button onclick="moveCarousel('carousel2', 1)" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 bg-navy/80 border border-white/10 hover:border-accent hover:text-accent text-offwhite/70 flex items-center justify-center transition duration-300 text-sm">›</button>
+
+        <!-- Dot Indicator -->
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20" id="dots2">
+            <span class="dot w-1.5 h-1.5 rounded-full bg-accent cursor-pointer" onclick="goToSlide('carousel2', 'dots2', 0)"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 cursor-pointer" onclick="goToSlide('carousel2', 'dots2', 1)"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 cursor-pointer" onclick="goToSlide('carousel2', 'dots2', 2)"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 cursor-pointer" onclick="goToSlide('carousel2', 'dots2', 3)"></span>
+        </div>
+    </div>
+
+    <!-- Info Proyek -->
+    <div class="px-2">
+        <span class="text-[10px] text-accent font-display tracking-widest font-bold">ACADEMIC PROJECT · UNIVERSITAS SUMATERA UTARA</span>
+        <h3 class="font-display text-xl font-bold my-1 group-hover:text-accent transition duration-300">SEPIA — Sistem Analitik Intelijen</h3>
+        <p class="text-offwhite/60 text-xs font-light leading-relaxed">
+            Platform intelijen analitik berbasis Laravel 13 yang dirancang untuk mendukung pengambilan keputusan strategis Kota Medan. Mengintegrasikan AI pipeline via n8n Cloud dengan model GPT-4o-mini dan Groq API untuk menghasilkan analisis PESTLE, SWOT, pemetaan aktor, dan risk scoring secara otomatis. Arsitektur backend dibangun dengan standalone Blade system, tujuh tabel analitik terstruktur di MySQL, serta modul distribusi laporan otomatis per instansi. Seluruh alur kerja AI diorkestrasikan melalui webhook n8n dengan normalisasi JSON response langsung di layer controller Laravel.
+        </p>
+        <p class="text-offwhite/30 text-[10px] font-display tracking-wider mt-3 italic">
+            * Source code tersedia untuk ditunjukkan saat interview
+        </p>
+    </div>
+</div>
+        </section>
+
+        <!-- CALL TO ACTION / HUBUNGI UNTUK INTERVIEW -->
+        <footer id="contact" class="bg-charcoal pt-32 pb-16 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
+            <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-accent/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+            
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <p class="font-display text-accent tracking-[0.3em] text-xs font-bold uppercase mb-4" data-aos="fade-up">// WORK OPPORTUNITY</p>
+                <h2 class="font-display text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-tight" data-aos="fade-up" data-aos-delay="100">
+                    Tertarik Mengajak <br>Saya Berdiskusi / Wawancara?
+                </h2>
+                <p class="text-offwhite/60 mb-12 max-w-md mx-auto font-light text-sm leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Saya sangat terbuka untuk posisi Magang (Internship) maupun Full-time. Mari hubungi saya secara langsung.
+                </p>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="https://mail.google.com/mail/?view=cm&to=athazaidann@gmail.com&su=Lamaran%20Kerja%20/%20Magang" 
+   target="_blank" 
+   class="custom-hover inline-block bg-accent text-offwhite border border-accent font-display font-bold text-xs tracking-widest px-10 py-5 transition duration-300">
+    KIRIM EMAIL LAMARAN ↗
+</a>
+                    <a href="https://www.linkedin.com/in/muhammad-atha-290818328" target="_blank" class="custom-hover inline-block bg-transparent text-offwhite border border-white/20 hover:border-accent font-display font-bold text-xs tracking-widest px-10 py-5 transition duration-300">
+    CONNECT DI LINKEDIN
+</a>
+                </div>
+
+                <!-- Footer Meta -->
+                <div class="mt-32 pt-8 border-t border-white/5 text-[11px] text-offwhite/30 flex flex-col sm:flex-row justify-between items-center gap-6">
+                    <p class="font-light">© 2026 Portofolio Mahasiswa. Desain & Kode Terstruktur.</p>
+                    <div class="flex gap-6 font-display tracking-wider">
+                        <a href="#" class="hover:text-accent transition custom-hover">GitHub</a>
+                        <!-- JADI ini: -->
+<a href="https://www.linkedin.com/in/muhammad-atha-290818328" target="_blank" class="hover:text-accent transition custom-hover">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- AOS JS Library & Logic -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            
+            AOS.init({ once: true });
+
+            // Scroll Progress & Navbar Dynamic Blur
+            window.addEventListener('scroll', () => {
+                const winScroll = document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('scrollProgress').style.width = scrolled + '%';
+
+                const navbar = document.getElementById('navbar');
+                if (winScroll > 50) {
+                    navbar.classList.add('py-4', 'bg-navy/90');
+                    navbar.classList.remove('py-5', 'bg-navy/70');
+                } else {
+                    navbar.classList.add('py-5', 'bg-navy/70');
+                    navbar.classList.remove('py-4', 'bg-navy/90');
+                }
+            });
+
+            // Custom Cursor Interaction
+            const cursor = document.getElementById('customCursor');
+            const cursorDot = document.getElementById('customCursorDot');
+            
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    cursorDot.style.left = e.clientX + 'px';
+                    cursorDot.style.top = e.clientY + 'px';
+                });
+
+                document.querySelectorAll('.custom-hover').forEach(item => {
+                    item.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+                    item.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+                });
+            }
+            
+        </script>
+        <script>
+    const carouselState = {};
+
+    function moveCarousel(id, direction) {
+        const track = document.getElementById(id);
+        const slides = track.querySelectorAll('.carousel-slide');
+        const total = slides.length;
+        
+        if (!carouselState[id]) carouselState[id] = 0;
+        carouselState[id] = (carouselState[id] + direction + total) % total;
+        
+        track.style.transform = `translateX(-${carouselState[id] * 100}%)`;
+        updateDots(id.replace('carousel', 'dots'), carouselState[id]);
+    }
+
+    function goToSlide(carouselId, dotsId, index) {
+        const track = document.getElementById(carouselId);
+        carouselState[carouselId] = index;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots(dotsId, index);
+    }
+
+    function updateDots(dotsId, activeIndex) {
+        const dots = document.getElementById(dotsId).querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            dot.className = `dot w-1.5 h-1.5 rounded-full cursor-pointer ${i === activeIndex ? 'bg-accent' : 'bg-white/30'}`;
+        });
+    }
+</script>
+    </body>
+    </html>
